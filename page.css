@@ -1,0 +1,184 @@
+/* ========================================
+   STYLES FOR GALLERY & CONTACT PAGES (NEW THEME)
+   ======================================== */
+
+/* Active Nav Link Style for Sub-pages */
+.nav-link.active {
+    color: var(--color-tertiary);
+}
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-tertiary);
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* ========================================
+   GALLERY COMPONENTS
+   ======================================== */
+
+/* Using card-item from the main styles for consistency */
+/* Using card-item from the main styles for consistency */
+.card-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.gallery-item .group-hover\:scale-105 {
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+
+/* ========================================
+   CONTACT FORM ENHANCEMENTS
+   ======================================== */
+
+#contactForm input:focus,
+#contactForm select:focus,
+#contactForm textarea:focus {
+    box-shadow: 0 0 0 2px var(--color-primary);
+}
+
+
+/* ========================================
+   ANIMATIONS & RESPONSIVENESS
+   ======================================== */
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .card-item:hover,
+    .gallery-item:hover {
+        transform: none;
+    }
+}
+
+/* Print styles for contact page */
+@media print {
+    #navbar-header,
+    #contact-hero,
+    .lg\:col-span-2, /* Hides info/map column */
+    footer,
+    .floating-whatsapp-button {
+        display: none !important;
+    }
+    .lg\:col-span-3 { /* Form takes full width */
+        width: 100%;
+    }
+}
+
+
+/* Masonry Grid Layout for Life at the Academy */
+.masonry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: 200px;
+    gap: 1.5rem; /* CHANGED FROM 1rem */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+.masonry-item {
+    background-size: cover;
+    background-position: center;
+    border-radius: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.masonry-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.masonry-large {
+    grid-row: span 3;
+    grid-column: span 2;
+}
+
+.masonry-medium {
+    grid-row: span 2;
+}
+
+.masonry-small {
+    grid-row: span 1;
+}
+
+.masonry-content {
+    padding: 2rem;
+    text-align: center;
+    width: 100%;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+}
+
+.masonry-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    margin: 0;
+    line-height: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .masonry-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 150px;
+    }
+
+    .masonry-large {
+        grid-row: span 2;
+        grid-column: span 2;
+    }
+
+    .masonry-medium {
+        grid-row: span 2;
+        grid-column: span 1;
+    }
+
+    .masonry-small {
+        grid-row: span 1;
+        grid-column: span 1;
+    }
+
+    .masonry-title {
+        font-size: 1.8rem;
+    }
+
+    .masonry-content {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .masonry-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 120px;
+    }
+
+    .masonry-large,
+    .masonry-medium,
+    .masonry-small {
+        grid-row: span 2;
+        grid-column: span 1;
+    }
+
+    .masonry-title {
+        font-size: 1.5rem;
+    }
+}

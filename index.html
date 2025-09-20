@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gourav Badminton Academy | Building Champions</title>
+    <meta name="description" content="Join Gourav Badminton Academy for professional badminton training. Featuring expert coaching, modern facilities, and a proven track record of building champions from the ground up.">
+    <meta name="keywords" content="badminton academy, professional coaching, sports training, badminton lessons, Ganganagar, Rajasthan, fitness, champions, athlete development">
+    <meta name="author" content="Gourav Badminton Academy">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏸</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'color-primary': '#5585b5', 'color-secondary': '#53a8b6', 'color-tertiary': '#79c2d0',
+                        'color-quaternary': '#bbe4e9', 'color-dark': '#1A1A1A', 'color-light': '#FFFFFF',
+                    },
+                    fontFamily: { display: ['Bebas Neue', 'sans-serif'], body: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-color-dark text-color-light">
+
+    <header id="navbar-header" class="fixed top-0 left-0 right-0 z-50 transition-transform duration-300" x-data="{ navOpen: false }">
+        <nav class="mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between bg-color-dark/80 backdrop-blur-md shadow-lg rounded-xl">
+            <a href="#home" class="flex items-center text-2xl font-display font-bold text-white"><span class="mr-2 text-3xl text-color-tertiary">Gourav</span> Badminton Academy</a>
+            <div class="hidden lg:flex space-x-8 items-center">
+                <a href="#home" class="nav-link">Home</a> <a href="#about" class="nav-link">About</a>
+                <a href="#programs" class="nav-link">Programs</a> <a href="#schedule" class="nav-link">Schedule</a>
+                <a href="gallery.html" class="nav-link">Gallery</a>
+                <a href="contact.html" class="cta-button bg-color-secondary text-white hover:bg-color-tertiary">Contact</a>
+            </div>
+            <button @click="navOpen = !navOpen" class="lg:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-color-tertiary"><i class="fas fa-bars text-xl text-white"></i></button>
+        </nav>
+        <div x-show="navOpen" @click.away="navOpen = false" x-transition class="lg:hidden bg-color-dark/95 backdrop-blur-md shadow-lg p-6">
+            <div class="flex flex-col space-y-4 text-center">
+                <a href="#home" @click="navOpen = false" class="nav-link">Home</a><a href="#about" @click="navOpen = false" class="nav-link">About</a>
+                <a href="#programs" @click="navOpen = false" class="nav-link">Programs</a><a href="#schedule" @click="navOpen = false" class="nav-link">Schedule</a>
+                <a href="gallery.html" class="nav-link">Gallery</a><a href="contact.html" class="cta-button bg-color-secondary text-white hover:bg-color-tertiary mt-2">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="homepage-hero w-full h-screen relative overflow-hidden flex items-center justify-center text-center text-white bg-black">
+            <div id="hero-carousel" class="absolute inset-0 w-full h-full">
+                <div class="w-full h-full bg-color-dark flex items-center justify-center"><p class="text-white/50">Loading media...</p></div>
+            </div>
+            <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+            <div class="container relative z-10 hero-content">
+                <div class="hero-heading">
+                    <h1 class="font-display font-black mb-12 drop-shadow-2xl leading-none opacity-85">
+                        <span class="block">Building Champions</span>
+                        <span class="text-color-quaternary block leading-tight">Through Excellence</span>
+                    </h1>
+                </div>
+                <p class="text-lg md:text-xl font-body mb-12 drop-shadow-sm max-w-3xl mx-auto opacity-85">
+                    Discover your potential with our expert coaching, state-of-the-art facilities, and a dedicated community.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 hero-ctas">
+                    <a href="contact.html" class="cta-button bg-color-secondary text-white shadow-lg hover:bg-color-tertiary transform hover:scale-105 backdrop-blur-sm">START YOUR JOURNEY</a>
+                    <a href="#programs" class="cta-button border-2 border-color-quaternary text-color-quaternary hover:bg-color-quaternary hover:text-color-dark transform hover:scale-105 backdrop-blur-sm">VIEW PROGRAMS</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 bg-color-quaternary text-color-dark">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16 anim-fade-up">
+                    <h2 class="section-heading text-color-primary">About The Academy</h2>
+                    <p class="section-subheading text-color-dark/80">
+                        Our commitment is to excellence, on and off the court. We combine world-class training with a holistic approach to athlete development.
+                    </p>
+                </div>
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="about-image-container anim-fade-up">
+                        <div class="image-container-cover aspect-[4/5] rounded-2xl shadow-2xl bg-gray-200">
+                            <img id="coach-image" src="https://placehold.co/600x750/eeeeee/cccccc?text=Loading..." alt="Head Coach Gourav Kumar">
+                        </div>
+                    </div>
+                    <div class="space-y-8 anim-fade-up">
+                        <div>
+                            <h3 class="text-4xl font-display font-bold text-color-secondary mb-3">Meet Head Coach Gourav Kumar</h3>
+                            <p class="text-lg text-color-dark/90 leading-relaxed">
+                                With over 15 years of experience as a state-level player and certified coach, Gourav Kumar is the heart of our academy. His passion is to transform aspiring players into disciplined, skilled, and mentally tough athletes ready to compete at the highest levels.
+                            </p>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div class="flex items-start space-x-4">
+                                <div class="text-3xl text-color-primary"><i class="fas fa-trophy"></i></div>
+                                <div><h4 class="font-bold text-xl">Proven Success</h4><p class="text-color-dark/80">Trained 50+ medal winners at district and state levels.</p></div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="text-3xl text-color-primary"><i class="fas fa-bullseye"></i></div>
+                                <div><h4 class="font-bold text-xl">Our Mission</h4><p class="text-color-dark/80">To provide a nurturing yet competitive environment for players to achieve their full potential.</p></div>
+                            </div>
+                        </div>
+                        <div class="mt-8"><a href="contact.html" class="cta-button bg-color-primary text-white hover:bg-color-secondary">Learn More</a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="programs" class="py-20 bg-color-dark text-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16 anim-fade-up">
+                    <h2 class="section-heading text-color-tertiary">Our Training Programs</h2>
+                    <p class="section-subheading text-white/80">Comprehensive training tailored to every skill level and age group, designed to unlock your full potential.</p>
+                </div>
+                <div id="programs-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 anim-stagger-children">
+                    <p class="col-span-full text-center py-10 text-white/50">Loading programs...</p>
+                </div>
+            </div>
+        </section>
+        <section id="gba-difference" class="py-20 bg-color-dark">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16 anim-fade-up">
+                    <h2 class="section-heading text-color-tertiary">The GBA Difference</h2>
+                    <p class="section-subheading text-white/80">We don't just train players; we build athletes. Our unique methodology is engineered for success at every level of the game.</p>
+                </div>
+                <div class="difference-grid grid grid-cols-1 lg:grid-cols-3 gap-8 anim-stagger-children">
+                    <div class="feature-card">
+                        <div class="feature-bg" style="background-image: url('https://placehold.co/600x800/1a1a1a/5585b5?text=Elite+Coaching');"></div>
+                        <div class="feature-content"><div><h3 class="text-4xl font-display text-white mb-3">Elite Coaching</h3><p class="text-white/80">Benefit from the strategic insights of certified, state-level coaches who provide personalized feedback to elevate your game.</p></div></div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-bg" style="background-image: url('https://placehold.co/600x800/1a1a1a/53a8b6?text=Peak+Performance');"></div>
+                        <div class="feature-content"><div><h3 class="text-4xl font-display text-white mb-3">Peak Performance</h3><p class="text-white/80">Our training integrates cutting-edge sports science for physical conditioning, ensuring you're faster, stronger, and more agile.</p></div></div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-bg" style="background-image: url('https://placehold.co/600x800/1a1a1a/79c2d0?text=Champion+Mindset');"></div>
+                        <div class="feature-content"><div><h3 class="text-4xl font-display text-white mb-3">Champion Mindset</h3><p class="text-white/80">We cultivate mental toughness, strategic thinking, and the resilience needed to win high-pressure matches.</p></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="weekly-plan" class="py-20 bg-color-dark text-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16 anim-fade-up">
+                    <h2 class="section-heading text-color-tertiary">A Week at the Academy</h2>
+                    <p class="section-subheading text-white/80">A glimpse into our structured weekly regimen designed for peak performance.</p>
+                </div>
+                <div class="timeline-container">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4 class="day-title">Monday & Tuesday</h4><h5 class="day-focus">Strength & Stroke Refinement</h5>
+                            <ul class="plan-list">
+                                <li><i class="fas fa-check-circle text-color-tertiary"></i> Agility ladder & cone drills</li>
+                                <li><i class="fas fa-check-circle text-color-tertiary"></i> Multi-shuttle drills for consistency</li>
+                                <li><i class="fas fa-check-circle text-color-tertiary"></i> Footwork pattern practice</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4 class="day-title">Wednesday & Thursday</h4><h5 class="day-focus">Power & Tactical Drills</h5>
+                            <ul class="plan-list">
+                                <li><i class="fas fa-check-circle text-color-tertiary"></i> Plyometric exercises for explosive power</li>
+                                <li><i class="fas fa-check-circle text-color-tertiary"></i> Game situation simulations</li>
+                                <li><i class="fas fa-check-circle text-color-tertiary"></i> On-court coaching for strategy</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4 class="day-title">Friday & Saturday</h4><h5 class="day-focus">Match Play & Analysis</h5>
+                            <ul class="plan-.list">
+                                <li><i class="fas fa-check-circle text-color-tertiary"></i> Full match simulations</li>
+                                <li><i class="fas fa-check-circle text-color-tertiary"></i> High-pressure point scenarios</li>
+                                <li><i class="fas fa-check-circle text-color-tertiary"></i> Post-match video analysis sessions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="schedule" class="py-20 bg-color-dark text-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16 anim-fade-up">
+                    <h2 class="section-heading text-color-tertiary">Training Schedule</h2>
+                    <p class="section-subheading text-white/80">Find the perfect time slot that fits your schedule.</p>
+                </div>
+                <div class="bg-color-primary/10 backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden border border-color-secondary/30 anim-fade-up">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left table-auto schedule-table">
+                            <thead class="bg-color-secondary/20">
+                                <tr class="font-display text-lg tracking-wider">
+                                    <th class="p-4">Day</th><th class="p-4">Time</th><th class="p-4">Program</th><th class="p-4">Coach</th>
+                                </tr>
+                            </thead>
+                            <tbody id="schedule-body"><tr><td colspan="4" class="text-center p-8 text-white/50">Loading schedule...</td></tr></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="text-center mt-12 anim-fade-up">
+                    <a href="contact.html" class="cta-button bg-color-primary text-white hover:bg-color-secondary">Book a Trial Class</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-color-dark text-white border-t border-color-primary/30">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-1">
+                    <h4 class="text-3xl font-display font-bold mb-4"><span class="text-color-tertiary">Gourav</span> Academy</h4>
+                    <p class="text-sm text-gray-400">Building champions through dedication, expert coaching, and world-class facilities.</p>
+                </div>
+                <div>
+                    <h5 class="text-lg font-semibold mb-4 text-color-secondary">Quick Links</h5>
+                    <ul class="text-gray-400 space-y-2">
+                        <li><a href="#home" class="hover:text-white">Home</a></li><li><a href="#about" class="hover:text-white">About</a></li>
+                        <li><a href="#programs" class="hover:text-white">Programs</a></li><li><a href="gallery.html" class="hover:text-white">Gallery</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-lg font-semibold mb-4 text-color-secondary">Programs</h5>
+                    <ul class="text-gray-400 space-y-2">
+                        <li><a href="#programs" class="hover:text-white">Kids Program</a></li>
+                        <li><a href="#programs" class="hover:text-white">Beginner Training</a></li>
+                        <li><a href="#programs" class="hover:text-white">Advanced Training</a></li>
+                    </ul>
+                </div>
+                <div id="footer-contact-info"><h5 class="text-lg font-semibold mb-4 text-color-secondary">Contact Info</h5><p class="text-sm text-gray-500">Loading...</p></div>
+            </div>
+            <hr class="my-8 border-gray-700">
+            <div class="text-center text-gray-500"><p>© 2024 Gourav Badminton Academy. All rights reserved.</p></div>
+        </div>
+    </footer>
+    <script type="module" src="app.js"></script>
+    <script type="module" src="config.js"></script>
+</body>
+</html>

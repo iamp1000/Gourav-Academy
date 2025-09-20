@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Gourav Badminton Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏸</text></svg>">
+    <style>
+        body {
+            background-color: #f0f4f8;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .label {
+            display: block;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 0.5rem;
+        }
+
+        .input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #cbd5e0;
+            transition: border-color 0.2s;
+        }
+
+        .input:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.5);
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background-color: #4299e1;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #2b6cb0;
+        }
+
+        .btn-secondary {
+            background-color: #e2e8f0;
+            color: #4a5568;
+        }
+
+        .btn-secondary:hover {
+            background-color: #cbd5e0;
+        }
+
+        .btn-danger {
+            background-color: #f56565;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #c53030;
+        }
+
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4299e1;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Auth Guard -->
+    <script>
+        if (sessionStorage.getItem('isAdminAuthenticated') !== 'true') {
+            window.location.href = 'admin_login.html';
+        }
+    </script>
+
+    <div id="loading-overlay" class="fixed inset-0 bg-white/80 z-50 flex items-center justify-center"
+        style="display: none;">
+        <div class="loader"></div>
+    </div>
+
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+        <header class="flex justify-between items-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800">Admin Dashboard</h1>
+            <button id="logoutButton" class="btn btn-secondary">Logout</button>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+
+            <!-- Hero Section -->
+            <div class="card p-6 xl:col-span-2">
+                <h2 class="text-2xl font-bold mb-4">Hero Section</h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="label">Carousel Images</label>
+                        <input type="file" id="heroImages" class="input" multiple accept="image/*">
+                        <div id="heroImagesPreview" class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4"></div>
+                    </div>
+                    <div>
+                        <label class="label">Background Videos</label>
+                        <input type="file" id="heroVideos" class="input" multiple accept="video/*">
+                        <div id="heroVideosPreview" class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+                    </div>
+                </div>
+                <button id="saveHero" class="btn btn-primary mt-6">Save Hero Section</button>
+            </div>
+
+            <!-- Contact & Footer -->
+            <div class="card p-6">
+                <h2 class="text-2xl font-bold mb-4">Contact & Footer Info</h2>
+                <div class="space-y-4">
+                    <div><label for="contactPhone" class="label">Phone Number</label><input type="tel" id="contactPhone"
+                            class="input"></div>
+                    <div><label for="contactEmail" class="label">Email Address</label><input type="email"
+                            id="contactEmail" class="input"></div>
+                    <div><label for="contactAddress" class="label">Location / Address</label><input type="text"
+                            id="contactAddress" class="input"></div>
+                    <div><label for="whatsappNumber" class="label">WhatsApp Number (with country code)</label><input
+                            type="tel" id="whatsappNumber" class="input" placeholder="e.g., 919414936670"></div>
+                </div>
+                <button id="saveContact" class="btn btn-primary mt-6">Save Contact Info</button>
+            </div>
+
+            <!-- Coach Section -->
+            <div class="card p-6">
+                <h2 class="text-2xl font-bold mb-4">Coach Section</h2>
+                <div>
+                    <label class="label">Coach's Picture</label>
+                    <input type="file" id="coachImage" class="input" accept="image/*">
+                    <div id="coachImagePreview" class="mt-4 w-32 h-32 rounded-lg overflow-hidden bg-gray-200"></div>
+                </div>
+                <button id="saveCoach" class="btn btn-primary mt-6">Save Coach Section</button>
+            </div>
+
+            <!-- Pricing Section -->
+            <div class="card p-6">
+                <h2 class="text-2xl font-bold mb-4">Program Prices</h2>
+                <div class="space-y-4">
+                    <div><label for="priceBeginner" class="label">Beginner Price (per month)</label><input type="number"
+                            id="priceBeginner" class="input"></div>
+                    <div><label for="priceIntermediate" class="label">Intermediate Price (per month)</label><input
+                            type="number" id="priceIntermediate" class="input"></div>
+                    <div><label for="priceAdvanced" class="label">Advanced Price (per month)</label><input type="number"
+                            id="priceAdvanced" class="input"></div>
+                </div>
+                <button id="savePrices" class="btn btn-primary mt-6">Save Prices</button>
+            </div>
+
+            <!-- Schedule Section -->
+            <div class="card p-6 xl:col-span-3">
+                <h2 class="text-2xl font-bold mb-4">Training Schedule</h2>
+                <div id="scheduleContainer" class="space-y-4">
+                    <!-- Schedule rows will be injected here by JS -->
+                </div>
+                <button id="addScheduleRow" class="btn btn-secondary mt-4"><i class="fas fa-plus mr-2"></i>Add
+                    Row</button>
+                <button id="saveSchedule" class="btn btn-primary mt-4">Save Schedule</button>
+            </div>
+
+            <!-- Gallery Section -->
+            <div class="card p-6 xl:col-span-3">
+                <h2 class="text-2xl font-bold mb-4">Gallery Manager</h2>
+                <div class="bg-gray-50 p-4 rounded-lg border space-y-4">
+                    <h3 class="text-lg font-semibold">Upload New Image</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div><label for="galleryImageFile" class="label">Image File</label><input type="file"
+                                id="galleryImageFile" class="input" accept="image/*"></div>
+                        <div><label for="galleryCategory" class="label">Category</label><select id="galleryCategory"
+                                class="select">
+                                <option value="victories">Tournament Victories</option>
+                                <option value="training">Academy Life & Training</option>
+                                <option value="testimonials">Player Testimonials</option>
+                            </select></div>
+                        <div><label for="galleryTitle" class="label">Title / Player Name</label><input type="text"
+                                id="galleryTitle" class="input" placeholder="e.g., State Champions 2024"></div>
+                        <div><label for="galleryDescription" class="label">Description / Quote</label><input type="text"
+                                id="galleryDescription" class="input" placeholder="e.g., U-18 Boys Singles"></div>
+                    </div>
+                    <button id="uploadGalleryImage" class="btn btn-primary">Upload and Add to Gallery</button>
+                </div>
+                <div id="galleryImagesPreview" class="mt-6">
+                    <h3 class="text-lg font-semibold mb-2">Current Gallery Images</h3>
+                    <p class="text-gray-500">Loading images...</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Supabase for Backend -->
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+        import { SUPABASE_URL, SUPABASE_ANON_KEY } from './config.js';
+        const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        const { data } = await supabase.auth.getSession();
+        if (!data.session) {
+            // No active session, redirect to login
+            window.location.href = 'admin_login.html';
+        }
+    </script>
+    <script type="module" src="config.js"></script>
+    <script type="module" src="admin.js"></script>
+</body>
+
+</html>
