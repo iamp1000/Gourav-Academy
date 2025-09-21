@@ -4,7 +4,9 @@
   "description": "",
   "main": "admin.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "keywords": [],
   "author": "",
@@ -48,5 +50,3 @@
   },
   "homepage": "https://github.com/iamp1000/Gourav-Academy#readme"
 }
-
-
