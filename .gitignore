@@ -1,3 +1,4 @@
 # .gitignore
 config.js
 node_modules/
+./assets/img

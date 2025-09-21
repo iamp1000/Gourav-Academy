@@ -1,9 +1,12 @@
 // This is the combined script for all frontend logic, including animations and data fetching.
 
+// AFTER
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
-import { SUPABASE_URL, SUPABASE_ANON_KEY } from './config.js';
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+const supabase = createClient(supabaseUrl, supabaseKey)
 
 document.addEventListener('DOMContentLoaded', () => {
     initializePageData();
@@ -153,11 +156,11 @@ function renderGallery(galleryItems) {
         if (training.length > 0) {
             // Define size classes for variety in the layout
             const sizeClasses = ['masonry-large', 'masonry-medium', 'masonry-medium', 'masonry-small', 'masonry-medium'];
-            
+
             trainingContainer.innerHTML = training.map((item, index) => {
                 // Cycle through the size classes to create a dynamic look
                 const sizeClass = sizeClasses[index % sizeClasses.length];
-                
+
                 return `
                     <div class="masonry-item ${sizeClass}" style="background-image: linear-gradient(rgba(26, 26, 26, 0.4), rgba(26, 26, 26, 0.6)), url('${item.image_url}');">
                         <div class="masonry-content">

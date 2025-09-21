@@ -6,7 +6,7 @@ on:
   push:
     branches: [ main ]
 
-# Allow this job to clone the repo and create a page deployment
+# Permissions needed to deploy to GitHub Pages
 permissions:
   contents: read
   pages: write
@@ -17,19 +17,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout your repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
 
       - name: Install Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 18 # Or a newer LTS version
+          node-version: 20
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build the project
         run: npm run build
-        env: # This is where the magic happens!
+        env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
       

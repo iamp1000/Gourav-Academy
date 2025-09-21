@@ -1,9 +1,12 @@
 // This script manages the admin panel, interacting with the Supabase backend.
 
+// AFTER
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
-import { SUPABASE_URL, SUPABASE_ANON_KEY } from './config.js';
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+
+const supabase = createClient(supabaseUrl, supabaseKey)
 
 // --- State Management ---
 let siteData = {
