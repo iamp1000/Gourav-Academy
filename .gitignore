@@ -1,4 +1,6 @@
 # .gitignore
 config.js
+env
 node_modules/
-./assets/img
+assets/img/
+.env
