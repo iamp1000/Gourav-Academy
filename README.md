@@ -1,6 +1,6 @@
 # Gourav Badminton Academy 🏸
 
-*Believe in the rally. Respect the footwork. Keep the UI out of the net.*
+A responsive frontend for a badminton academy, with a few sporting ambitions and very practical navigation.
 
 A responsive website for Gourav Badminton Academy, presenting badminton training, coaching, facilities, and athlete development. The page metadata positions the academy in Sri Ganganagar, Rajasthan.
 
@@ -31,4 +31,4 @@ npm run preview
 
 Review the contact details, location, coaching claims, imagery permissions, and form destinations in the site before publishing. Keep any visitor data collection transparent and avoid publishing placeholder contact details.
 
-*It's a sports academy, not a training montage. The site should make the next step clear.*
+The site should make the next step clear: find information, view the academy, or get in touch.
